@@ -1,12 +1,27 @@
-- name: installing nginx in ansible server
+# - name: installing nginx in ansible server
+#   hosts: web
+#   become: yes
+#   tasks:
+#   - name: install nginx
+#     ansible.builtin.package:
+#         name: nginx
+#         state: present
+#   - name: start the service
+#     ansible.builtin.service:
+#         name: run nginx
+#         state: started
+
+
+
+- name: install and run nginx
   hosts: web
-  become: yes
+  become: yes #it will get root access
   tasks:
-  - name: install nginx
-    ansible.builtin.package:
-        name: nginx
-        state: present
-  - name: start the service
+  - name: install nginx package
+    ansible.builtin.package:        # this is module
+      name: nginx
+      state: present         # present is nothing but installing
+  - name: run nginx
     ansible.builtin.service:
-        name: run nginx
-        state: started
+      name: nginx
+      state: started
